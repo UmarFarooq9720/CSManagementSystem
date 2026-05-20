@@ -1,8 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import connect from "../../../../lib/mongo";
 import { createToken, hashPassword, serializeCookie } from "../../../../lib/auth";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const body = await request.json();
   const name = String(body.name || "").trim();
   const email = String(body.email || "").trim().toLowerCase();

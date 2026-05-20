@@ -40,7 +40,10 @@ export function UsersTab({ showToast }: { showToast: (kind: "success" | "error" 
   const readJson = async <T,>(response: Response, fallback: T) => {
     const text = await response.text();
     const data = text ? (JSON.parse(text) as T & { error?: string }) : fallback;
-    if (!response.ok) throw new Error(data && "error" in data && data.error ? data.error : `Request failed: ${response.status}`);
+    if (!response.ok) {
+      const message = typeof data === "object" && data !== null && "error" in data && typeof data.error === "string" ? data.error : `Request failed: ${response.status}`;
+      throw new Error(message);
+    }
     return data;
   };
 

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import connect from "../../../lib/mongo";
 
 export async function GET() {
@@ -7,7 +7,7 @@ export async function GET() {
   return NextResponse.json({ items });
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const body = await request.json();
   const name = String(body.name || "").trim();
   const category = String(body.category || "General").trim();

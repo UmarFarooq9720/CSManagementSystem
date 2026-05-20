@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { ObjectId } from "mongodb";
 import connect from "../../../lib/mongo";
 import { hashPassword, parseCookies, verifyToken } from "../../../lib/auth";
@@ -16,7 +16,7 @@ function idQuery(id: string) {
   return ObjectId.isValid(id) ? { _id: new ObjectId(id) } : { _id: id };
 }
 
-async function requireAdmin(request: Request) {
+async function requireAdmin(request: NextRequest) {
   try {
     const cookies = parseCookies(request.headers.get("cookie"));
     const token = cookies.inventory_token;
@@ -50,7 +50,7 @@ function sanitizeUser(user: Record<string, unknown>) {
   };
 }
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   const session = await requireAdmin(request);
   if (!session) return NextResponse.json({ error: "Admin access is required." }, { status: 403 });
 
@@ -58,7 +58,7 @@ export async function GET(request: Request) {
   return NextResponse.json({ users: users.map((user) => sanitizeUser(user as Record<string, unknown>)) });
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const session = await requireAdmin(request);
   if (!session) return NextResponse.json({ error: "Admin access is required." }, { status: 403 });
 
@@ -92,7 +92,7 @@ export async function POST(request: Request) {
   return NextResponse.json({ user: sanitizeUser({ ...user, _id: result.insertedId }) });
 }
 
-export async function PATCH(request: Request) {
+export async function PATCH(request: NextRequest) {
   const session = await requireAdmin(request);
   if (!session) return NextResponse.json({ error: "Admin access is required." }, { status: 403 });
 
@@ -113,17 +113,17 @@ export async function PATCH(request: Request) {
     },
   };
 
-  await session.db.collection("users").updateOne(idQuery(id), { $set: update });
+  await session.db.collection("users").updateOne(idQuery(id) as any, { $set: update });
   return NextResponse.json({ ok: true });
 }
 
-export async function DELETE(request: Request) {
+export async function DELETE(request: NextRequest) {
   const session = await requireAdmin(request);
   if (!session) return NextResponse.json({ error: "Admin access is required." }, { status: 403 });
 
   const id = new URL(request.url).searchParams.get("id") || "";
   if (!id) return NextResponse.json({ error: "User id is required." }, { status: 400 });
 
-  await session.db.collection("users").deleteOne(idQuery(id));
+  await session.db.collection("users").deleteOne(idQuery(id) as any);
   return NextResponse.json({ ok: true });
 }

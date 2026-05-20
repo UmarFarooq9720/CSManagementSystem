@@ -26,17 +26,20 @@ export function TopBar({ panel, user, onToggleSidebar }: { panel: PanelId; user:
   );
 }
 
-function panelTitle(panel: PanelId) {
-  return {
+const panelTitles: Record<PanelId, string> = {
     dashboard: "Dashboard",
     items: "Items",
+    addItem: "Add Item",
     issue: "Issue Item",
     return: "Return Item",
     transactions: "My Transactions",
     reports: "Reports",
     users: "Users",
     settings: "Settings",
-  }[panel];
+};
+
+function panelTitle(panel: PanelId) {
+  return panelTitles[panel];
 }
 
 function subtitleFor(title: string) {

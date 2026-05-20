@@ -10,8 +10,13 @@ declare global {
 
 const uri = process.env.MONGODB_URI || "";
 const client = uri ? new MongoClient(uri) : null;
-const clientPromise = uri && (global._mongoClientPromise || client?.connect());
-if (process.env.NODE_ENV !== "production" && uri) global._mongoClientPromise = clientPromise;
+
+function getClientPromise() {
+  if (!client) return undefined;
+  const clientPromise = global._mongoClientPromise || client.connect();
+  if (process.env.NODE_ENV !== "production") global._mongoClientPromise = clientPromise;
+  return clientPromise;
+}
 
 const localDbDir = path.resolve(process.cwd(), ".local-db");
 const localDbFile = path.join(localDbDir, "db.json");
@@ -162,6 +167,7 @@ async function createLocalDb() {
 }
 
 export default async function connect() {
+  const clientPromise = getClientPromise();
   if (clientPromise) {
     try {
       const client = await clientPromise;

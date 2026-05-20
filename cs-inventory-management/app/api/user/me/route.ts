@@ -1,8 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import connect from "../../../../lib/mongo";
 import { parseCookies, verifyToken } from "../../../../lib/auth";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   const cookies = parseCookies(request.headers.get("cookie"));
   const token = cookies.inventory_token;
   if (!token) {

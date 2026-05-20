@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { ObjectId } from "mongodb";
 import connect from "../../../lib/mongo";
 
@@ -16,7 +16,7 @@ export async function GET() {
   return NextResponse.json({ transactions });
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const body = await request.json();
   const itemId = String(body.itemId || "").trim();
   const type = String(body.type || "issue");
@@ -38,7 +38,7 @@ export async function POST(request: Request) {
 
   const db = await connect();
   const query = itemIdQuery(itemId);
-  const item = await db.collection("items").findOne(query);
+  const item = await db.collection("items").findOne(query as any);
   if (!item) {
     return NextResponse.json({ error: "Item not found." }, { status: 404 });
   }
@@ -72,7 +72,7 @@ export async function POST(request: Request) {
     update.totalQty = item.totalQty + quantity;
   }
 
-  await db.collection("items").updateOne(query, { $set: update });
+  await db.collection("items").updateOne(query as any, { $set: update });
   const transaction = {
     itemId: item._id,
     itemName: item.name,
