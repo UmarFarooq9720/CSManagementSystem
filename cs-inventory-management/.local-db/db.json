@@ -1,0 +1,239 @@
+{
+  "users": [
+    {
+      "name": "sajid",
+      "email": "sajid@gmail.com",
+      "passwordHash": "dbe1c08dca956eddae76d0e67857cbcbdb136c8a46e4af218d9b421a3fbefa40",
+      "role": "admin",
+      "createdAt": "2026-05-20T17:34:15.727Z",
+      "_id": "1779298455753-sd2vp1yv",
+      "status": "inactive",
+      "permissions": {
+        "manageUsers": true,
+        "manageItems": true,
+        "issueReturn": true,
+        "viewReports": true,
+        "syncData": true,
+        "systemSettings": true
+      }
+    },
+    {
+      "name": "DR sulman afsar",
+      "email": "drsulmanuaf9720@gmail.com",
+      "passwordHash": "af2fdc11cc38c71dc04df5245edb34879d0c10e164935753b94b5193579d3fa3",
+      "role": "admin",
+      "createdAt": "2026-05-20T18:05:59.293Z",
+      "_id": "1779300359296-g8xplzbm"
+    },
+    {
+      "name": "dr ihsan latif",
+      "email": "drihsanuaf@730",
+      "username": "drihsanuaf",
+      "passwordHash": "bdc4fa2386c908266a9b9a57755f7d5a91a332746146f9d85cace2b7badc3bb5",
+      "role": "admin",
+      "status": "active",
+      "permissions": {
+        "manageUsers": true,
+        "manageItems": true,
+        "issueReturn": true,
+        "viewReports": true,
+        "syncData": true,
+        "systemSettings": true
+      },
+      "createdAt": "2026-05-20T18:56:39.114Z",
+      "_id": "1779303399118-5k51n2k2"
+    },
+    {
+      "name": "Dr Sulman",
+      "email": "drsulmanuaf@9720",
+      "username": "drsulmanuaf",
+      "passwordHash": "af2fdc11cc38c71dc04df5245edb34879d0c10e164935753b94b5193579d3fa3",
+      "role": "admin",
+      "status": "active",
+      "permissions": {
+        "manageUsers": true,
+        "manageItems": true,
+        "issueReturn": true,
+        "viewReports": true,
+        "syncData": true,
+        "systemSettings": true
+      },
+      "createdAt": "2026-05-20T19:05:08.151Z",
+      "_id": "1779303908182-w4covckc"
+    }
+  ],
+  "items": [
+    {
+      "name": "pc",
+      "category": "Computers",
+      "description": "lab 3 usage",
+      "totalQty": 14,
+      "availableQty": 1,
+      "lowStockThreshold": 10,
+      "createdAt": "2026-05-20T17:34:59.759Z",
+      "_id": "1779298499764-pv3ihk0a"
+    },
+    {
+      "name": "chairs",
+      "category": "Furniture",
+      "description": "For lab 2",
+      "totalQty": 150,
+      "availableQty": 100,
+      "lowStockThreshold": 5,
+      "createdAt": "2026-05-20T17:54:15.257Z",
+      "_id": "1779299655268-xlt8cxyh"
+    },
+    {
+      "name": "projector",
+      "category": "Lab Equipment",
+      "description": "",
+      "totalQty": 55,
+      "availableQty": 55,
+      "lowStockThreshold": 5,
+      "createdAt": "2026-05-20T18:07:11.586Z",
+      "_id": "1779300431591-r2lq19u2"
+    },
+    {
+      "name": "table",
+      "category": "Furniture",
+      "description": "",
+      "totalQty": 54,
+      "availableQty": 54,
+      "lowStockThreshold": 5,
+      "createdAt": "2026-05-20T19:08:03.576Z",
+      "_id": "1779304083582-h3t8sydy"
+    },
+    {
+      "name": "keyboard",
+      "category": "Lab Equipment",
+      "description": "lab",
+      "totalQty": 48,
+      "availableQty": 30,
+      "lowStockThreshold": 5,
+      "createdAt": "2026-05-20T19:09:23.440Z",
+      "_id": "1779304163445-ym0ggje8"
+    },
+    {
+      "name": "pcs",
+      "category": "Computers",
+      "description": "",
+      "totalQty": 100,
+      "availableQty": 100,
+      "lowStockThreshold": 5,
+      "createdAt": "2026-05-20T19:35:37.290Z",
+      "_id": "1779305737294-gx2r4lyp"
+    }
+  ],
+  "transactions": [
+    {
+      "itemId": "1779298499764-pv3ihk0a",
+      "itemName": "pc",
+      "type": "receive",
+      "quantity": 12,
+      "party": "sajid",
+      "purpose": "my own marzi",
+      "createdAt": "2026-05-20T17:44:30.135Z",
+      "_id": "1779299070138-5gx9zpcr"
+    },
+    {
+      "itemId": "1779298499764-pv3ihk0a",
+      "itemName": "pc",
+      "type": "issue",
+      "quantity": 1,
+      "party": "Lab 2",
+      "purpose": "Lab work",
+      "createdAt": "2026-05-20T17:55:14.220Z",
+      "_id": "1779299714225-xvbx118f"
+    },
+    {
+      "itemId": "1779298499764-pv3ihk0a",
+      "itemName": "pc",
+      "type": "issue",
+      "quantity": 12,
+      "party": "sa",
+      "purpose": "sa",
+      "createdAt": "2026-05-20T17:55:35.476Z",
+      "_id": "1779299735479-m1m0x75l"
+    },
+    {
+      "itemId": "1779300431591-r2lq19u2",
+      "itemName": "projector",
+      "type": "receive",
+      "quantity": 10,
+      "party": "sajid",
+      "purpose": "sajid",
+      "createdAt": "2026-05-20T18:33:16.865Z",
+      "_id": "1779301996891-kegizs4i"
+    },
+    {
+      "itemId": "1779298499764-pv3ihk0a",
+      "itemName": "pc",
+      "type": "receive",
+      "quantity": 1,
+      "party": "djai",
+      "purpose": "sa",
+      "createdAt": "2026-05-20T18:38:37.323Z",
+      "_id": "1779302317326-jvkn93bl"
+    },
+    {
+      "itemId": "1779299655268-xlt8cxyh",
+      "itemName": "chairs",
+      "type": "issue",
+      "quantity": 50,
+      "party": "sm",
+      "purpose": "iji",
+      "createdAt": "2026-05-20T18:38:59.482Z",
+      "_id": "1779302339485-mbuah3bo"
+    },
+    {
+      "itemId": "1779299655268-xlt8cxyh",
+      "itemName": "chairs",
+      "type": "receive",
+      "quantity": 50,
+      "party": "ijfag",
+      "purpose": "gij",
+      "createdAt": "2026-05-20T18:39:27.554Z",
+      "_id": "1779302367557-7l1fmsji"
+    },
+    {
+      "itemId": "1779304163445-ym0ggje8",
+      "itemName": "keyboard",
+      "type": "issue",
+      "quantity": 9,
+      "party": "dr irfan",
+      "purpose": "lab working",
+      "createdAt": "2026-05-20T19:10:18.289Z",
+      "_id": "1779304218293-uk8y6sc1"
+    },
+    {
+      "itemId": "1779304163445-ym0ggje8",
+      "itemName": "keyboard",
+      "type": "receive",
+      "quantity": 9,
+      "party": "sajid",
+      "purpose": "lab work",
+      "createdAt": "2026-05-20T19:11:18.439Z",
+      "_id": "1779304278443-hua2rdmj"
+    },
+    {
+      "itemId": "1779304163445-ym0ggje8",
+      "itemName": "keyboard",
+      "type": "issue",
+      "quantity": 9,
+      "party": "umar",
+      "purpose": "lab work",
+      "createdAt": "2026-05-20T19:13:07.002Z",
+      "_id": "1779304387006-32pgjaih"
+    },
+    {
+      "itemId": "1779304163445-ym0ggje8",
+      "itemName": "keyboard",
+      "type": "receive",
+      "quantity": 9,
+      "party": "sajid",
+      "purpose": "lab work",
+      "createdAt": "2026-05-20T19:13:45.666Z",
+      "_id": "1779304425670-vrt53k2a"
+    }
+  ]
+}

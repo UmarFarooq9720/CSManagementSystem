@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+:root {
+  --background: #020617;
+  --foreground: #e2e8f0;
+  --surface: #0f172a;
+  --surface-strong: #111827;
+  --border: rgba(148, 163, 184, 0.12);
+  --accent: #5b45df;
+  --accent-soft: rgba(91, 69, 223, 0.1);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.form-input {
+  width: 100%;
+  border-radius: 0.375rem;
+  border: 1px solid #dbe3ef;
+  background: #ffffff;
+  padding: 0.75rem 0.875rem;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.form-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.accent-bg {
+  background: var(--accent);
+}
+
+.accent-text {
+  color: var(--accent);
+}
+
+.accent-border {
+  border-color: var(--accent);
+}
+
+.accent-soft-bg {
+  background: var(--accent-soft);
+}
+
+.focus-accent:focus {
+  border-color: var(--accent);
+}
+
+.hover-accent-surface:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: rgba(124, 58, 237, 0.3);
+}
