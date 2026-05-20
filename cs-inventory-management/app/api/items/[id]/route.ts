@@ -1,9 +1,10 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { ObjectId } from "mongodb";
 import connect from "../../../../lib/mongo";
 
-export async function PATCH(request: Request, { params }: { params: { id: string } }) {
-  const id = params.id;
+export async function PATCH(request: NextRequest, { params }: { params: { id: string } | Promise<{ id: string }> }) {
+  const resolvedParams = (await Promise.resolve(params)) as { id: string };
+  const id = resolvedParams.id;
   const body = await request.json();
   const updates: Record<string, any> = {};
 
