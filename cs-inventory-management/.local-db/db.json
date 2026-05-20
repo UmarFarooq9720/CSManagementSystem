@@ -62,68 +62,7 @@
       "_id": "1779303908182-w4covckc"
     }
   ],
-  "items": [
-    {
-      "name": "pc",
-      "category": "Computers",
-      "description": "lab 3 usage",
-      "totalQty": 14,
-      "availableQty": 1,
-      "lowStockThreshold": 10,
-      "createdAt": "2026-05-20T17:34:59.759Z",
-      "_id": "1779298499764-pv3ihk0a"
-    },
-    {
-      "name": "chairs",
-      "category": "Furniture",
-      "description": "For lab 2",
-      "totalQty": 150,
-      "availableQty": 100,
-      "lowStockThreshold": 5,
-      "createdAt": "2026-05-20T17:54:15.257Z",
-      "_id": "1779299655268-xlt8cxyh"
-    },
-    {
-      "name": "projector",
-      "category": "Lab Equipment",
-      "description": "",
-      "totalQty": 55,
-      "availableQty": 55,
-      "lowStockThreshold": 5,
-      "createdAt": "2026-05-20T18:07:11.586Z",
-      "_id": "1779300431591-r2lq19u2"
-    },
-    {
-      "name": "table",
-      "category": "Furniture",
-      "description": "",
-      "totalQty": 54,
-      "availableQty": 54,
-      "lowStockThreshold": 5,
-      "createdAt": "2026-05-20T19:08:03.576Z",
-      "_id": "1779304083582-h3t8sydy"
-    },
-    {
-      "name": "keyboard",
-      "category": "Lab Equipment",
-      "description": "lab",
-      "totalQty": 48,
-      "availableQty": 30,
-      "lowStockThreshold": 5,
-      "createdAt": "2026-05-20T19:09:23.440Z",
-      "_id": "1779304163445-ym0ggje8"
-    },
-    {
-      "name": "pcs",
-      "category": "Computers",
-      "description": "",
-      "totalQty": 100,
-      "availableQty": 100,
-      "lowStockThreshold": 5,
-      "createdAt": "2026-05-20T19:35:37.290Z",
-      "_id": "1779305737294-gx2r4lyp"
-    }
-  ],
+  "items": [],
   "transactions": [
     {
       "itemId": "1779298499764-pv3ihk0a",

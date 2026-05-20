@@ -2,6 +2,10 @@ import { NextResponse, NextRequest } from "next/server";
 import { ObjectId } from "mongodb";
 import connect from "../../../../lib/mongo";
 
+function idQuery(id: string) {
+  return ObjectId.isValid(id) ? { _id: new ObjectId(id) } : { _id: id };
+}
+
 export async function PATCH(request: NextRequest, { params }: { params: { id: string } | Promise<{ id: string }> }) {
   const resolvedParams = (await Promise.resolve(params)) as { id: string };
   const id = resolvedParams.id;
@@ -26,12 +30,27 @@ export async function PATCH(request: NextRequest, { params }: { params: { id: st
   }
 
   const db = await connect();
-  const item = await db.collection("items").findOne({ _id: new ObjectId(id) });
+  const query = idQuery(id);
+  const item = await db.collection("items").findOne(query as any);
   if (!item) {
     return NextResponse.json({ error: "Item not found." }, { status: 404 });
   }
 
-  await db.collection("items").updateOne({ _id: new ObjectId(id) }, { $set: updates });
-  const updated = await db.collection("items").findOne({ _id: new ObjectId(id) });
+  await db.collection("items").updateOne(query as any, { $set: updates });
+  const updated = await db.collection("items").findOne(query as any);
   return NextResponse.json({ item: updated });
+}
+
+export async function DELETE(_request: NextRequest, { params }: { params: { id: string } | Promise<{ id: string }> }) {
+  const resolvedParams = (await Promise.resolve(params)) as { id: string };
+  const id = resolvedParams.id;
+
+  const db = await connect();
+  const result = await db.collection("items").deleteOne(idQuery(id) as any);
+
+  if (result.deletedCount === 0) {
+    return NextResponse.json({ error: "Item not found." }, { status: 404 });
+  }
+
+  return NextResponse.json({ success: true });
 }

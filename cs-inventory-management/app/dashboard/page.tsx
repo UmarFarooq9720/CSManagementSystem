@@ -182,6 +182,27 @@ export default function DashboardPage() {
     }
   };
 
+  const handleDeleteItem = async (itemId: string) => {
+    const item = items.find((entry) => entry._id === itemId);
+    const itemName = item?.name || "this item";
+
+    if (!window.confirm(`Delete ${itemName}? This action cannot be undone.`)) {
+      return;
+    }
+
+    setBusy(true);
+    try {
+      const response = await fetch(`/api/items/${encodeURIComponent(itemId)}`, { method: "DELETE" });
+      await readJson<{ success?: boolean }>(response, {});
+      showToast("success", "Item deleted successfully.");
+      await refreshData();
+    } catch (error) {
+      showToast("error", error instanceof Error ? error.message : "Unable to delete item.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
   const handleTransaction = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!txState.itemId) {
@@ -226,7 +247,7 @@ export default function DashboardPage() {
         <main className="min-w-0 px-5 py-6 sm:px-8 lg:px-10">
           <TopBar panel={activePanel} user={user} onToggleSidebar={() => setSidebarCollapsed((value) => !value)} />
           {activePanel === "dashboard" && <DashboardTab summary={summary} categories={categoryTotals} lowStockItems={lowStockItems} transactions={transactions} monthly={reportData?.monthly ?? []} onSelectItem={selectItemForTransaction} />}
-          {activePanel === "items" && <ItemsTab items={filteredItems} allItems={items} search={itemSearch} setSearch={setItemSearch} categoryFilter={categoryFilter} setCategoryFilter={setCategoryFilter} formState={formState} setFormState={setFormState} onSubmit={handleCreateItem} busy={busy} onSelectItem={selectItemForTransaction} />}
+          {activePanel === "items" && <ItemsTab items={filteredItems} allItems={items} search={itemSearch} setSearch={setItemSearch} categoryFilter={categoryFilter} setCategoryFilter={setCategoryFilter} formState={formState} setFormState={setFormState} onSubmit={handleCreateItem} busy={busy} onSelectItem={selectItemForTransaction} onDeleteItem={handleDeleteItem} />}
           {activePanel === "addItem" && <AddItemTab formState={formState} setFormState={setFormState} onSubmit={handleCreateItem} busy={busy} />}
           {(activePanel === "issue" || activePanel === "return") && <TransactionTab mode={txState.type} txState={txState} setTxState={setTxState} items={items} onSubmit={handleTransaction} busy={busy} />}
           {activePanel === "transactions" && <TransactionsTab transactions={filteredTransactions} filter={txFilter} setFilter={setTxFilter} />}
